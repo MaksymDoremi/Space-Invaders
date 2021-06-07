@@ -121,7 +121,7 @@ public class Controller {
 				if (bullet.getY() < TempEnemy.getY() + TempEnemy.getEnemyImage().getHeight(null)
 						&& bullet.getX() >= TempEnemy.getX()
 						&& bullet.getX() < TempEnemy.getX() + TempEnemy.getEnemyImage().getWidth(null)
-						&& bullet.imageURL() != "/images/bulletEnemy.pngaa") {
+						&& bullet.imageURL() != "/images/bulletEnemy.png") {
 					removeEnemy(TempEnemy);
 					removeBullet(bullet);
 					score++;
