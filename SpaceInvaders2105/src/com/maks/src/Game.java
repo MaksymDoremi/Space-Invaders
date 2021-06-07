@@ -43,7 +43,7 @@ public class Game extends JPanel implements ActionListener {
 	Random rnd;
 
 	Controller c;
-
+	
 	public Game() {
 		this.setFocusable(true);
 
@@ -101,7 +101,7 @@ public class Game extends JPanel implements ActionListener {
 	// SHOOTING BULLETS
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-
+		
 		if (key == KeyEvent.VK_SPACE) {
 			c.addBullet(new Bullet(ship.x + ship.getShipImage().getWidth(null) / 2, ship.y - 30, -7));
 		}

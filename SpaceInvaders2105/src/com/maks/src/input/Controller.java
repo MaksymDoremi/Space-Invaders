@@ -71,6 +71,7 @@ public class Controller {
 
 			TempEnemy.update();
 
+			//Enemy shoot
 			if (rnd.nextInt(180) == 1) {
 				addBullet(new Bullet(TempEnemy.getX() + TempEnemy.getEnemyImage().getWidth(null) / 2,
 						TempEnemy.getY() + TempEnemy.getEnemyImage().getHeight(null), 4, "/images/bulletEnemy.png"));
@@ -165,16 +166,15 @@ public class Controller {
 		}
 	}
 
-	// IF HEALTH == 0 ===> Game Over
 	public void gameOver(Ship ship, Graphics g, Timer timer) {
 		Graphics2D g2d = (Graphics2D) g;
-
+	
 		if (ship.health <= 0 || lives == 0) {
 			ship = null;
 			enemies.clear();
 			bullets.clear();
 			timer.stop();
-
+	
 			g2d.setFont(new Font("Stencil", Font.PLAIN, 60));
 			g2d.setPaint(Color.white);
 			g2d.drawString("You lost", 180, 325);
