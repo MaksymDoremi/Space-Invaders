@@ -35,6 +35,7 @@ public class Game extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
+	// OBJECTS
 	Timer timer;
 
 	Ship ship;
@@ -54,8 +55,10 @@ public class Game extends JPanel implements ActionListener {
 		// Creating a Ship
 		ship = new Ship(WIDTH / 2 - WIDTHSHIP / 2, HEIGHT - HEIGHTSHIP - 50);
 
+		// Creating a controller
 		c = new Controller();
-
+		
+		//Key listener for moving player ship
 		addKeyListener(new KeyInput(ship, this));
 	}
 
@@ -66,21 +69,27 @@ public class Game extends JPanel implements ActionListener {
 
 		// Draw background
 		g2d.drawImage(getBackgroundImage(), 0, 0, this);
-		
+
 		// Draw score
 		g2d.setFont(new Font("Calibri", Font.PLAIN, 28));
 		g2d.setColor(Color.white);
-		g2d.drawString("Score: "+c.getScore(), 10, 30);
-		
-		//Draw lives
+		g2d.drawString("Score: " + c.getScore(), 10, 30);
+
+		// Draw lives
 		g2d.setFont(new Font("Calibri", Font.PLAIN, 28));
 		g2d.setColor(Color.white);
-		g2d.drawString("Lives: "+c.getLives(), HEIGHT - 120, 30);
+		g2d.drawString("Lives: " + c.getLives(), HEIGHT - 120, 30);
 
 		// Draw a Ship
 		ship.draw(g2d);
+
+		// Draw enemies
 		c.draw(g2d);
+
+		// Move bullets
 		c.render(g2d);
+
+		// Check for game over
 		c.gameOver(ship, g2d, timer);
 	}
 
@@ -89,6 +98,7 @@ public class Game extends JPanel implements ActionListener {
 		return i.getImage();
 	}
 
+	// SHOOTING BULLETS
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 
@@ -100,11 +110,24 @@ public class Game extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		repaint();
+
+		// Move ship
 		ship.update();
+
+		// Move enemies
 		c.update();
+
+		// Move bullets
 		c.tick();
+
+		// Check for killed enemies(if collision = kill)
 		c.killEnemy();
+
+		// Check for hit player ship
 		c.hurt(ship);
+
+		// Check for collision ship with enemy, if yes then destroy enemy 
+		// and subtract 1 from ship.health
 		c.crush(ship);
 	}
 }
