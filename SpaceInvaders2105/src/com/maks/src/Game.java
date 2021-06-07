@@ -1,5 +1,7 @@
 package com.maks.src;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -64,6 +66,16 @@ public class Game extends JPanel implements ActionListener {
 
 		// Draw background
 		g2d.drawImage(getBackgroundImage(), 0, 0, this);
+		
+		// Draw score
+		g2d.setFont(new Font("Calibri", Font.PLAIN, 28));
+		g2d.setColor(Color.white);
+		g2d.drawString("Score: "+c.getScore(), 10, 30);
+		
+		//Draw lives
+		g2d.setFont(new Font("Calibri", Font.PLAIN, 28));
+		g2d.setColor(Color.white);
+		g2d.drawString("Lives: "+c.getLives(), HEIGHT - 120, 30);
 
 		// Draw a Ship
 		ship.draw(g2d);

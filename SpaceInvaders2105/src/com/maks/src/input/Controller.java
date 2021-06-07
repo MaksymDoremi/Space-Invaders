@@ -25,6 +25,17 @@ public class Controller {
 
 	Random rnd;
 
+	private int score = 0;
+	private int lives = 5; // ONLY 5 ENEMY CAN REACH THE BORDER, OR YOU LOSE
+
+	public int getScore() {
+		return score;
+	}
+	
+	public int getLives() {
+		return lives;
+	}
+
 	public Controller() {
 
 		rnd = new Random();
@@ -52,8 +63,10 @@ public class Controller {
 		for (int i = 0; i < enemies.size(); i++) {
 			TempEnemy = enemies.get(i);
 
+			// REMOVE ENEMY IF TOUCHES BORDER
 			if (TempEnemy.getY() > Game.HEIGHT - TempEnemy.getEnemyImage().getHeight(null)) {
 				removeEnemy(TempEnemy);
+				lives--;
 			}
 
 			TempEnemy.update();
@@ -111,6 +124,7 @@ public class Controller {
 						&& bullet.imageURL() != "/images/bulletEnemy.pngaa") {
 					removeEnemy(TempEnemy);
 					removeBullet(bullet);
+					score++;
 				}
 
 			}
@@ -155,7 +169,7 @@ public class Controller {
 	public void gameOver(Ship ship, Graphics g, Timer timer) {
 		Graphics2D g2d = (Graphics2D) g;
 
-		if (ship.health <= 0) {
+		if (ship.health <= 0 || lives == 0) {
 			ship = null;
 			enemies.clear();
 			bullets.clear();
