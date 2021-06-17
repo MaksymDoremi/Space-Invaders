@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import com.maks.src.GlobalPosition;
 
 public class Enemy extends GlobalPosition {
-	private String enemyImage = "/images/enemy.png";
+	private String enemyImage = "/images/susenemy.png";
 	private ImageIcon enemy = new ImageIcon(getClass().getResource(enemyImage));
 
 	int velY = 0;

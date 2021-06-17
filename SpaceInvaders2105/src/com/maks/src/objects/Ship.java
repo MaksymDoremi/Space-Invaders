@@ -13,7 +13,7 @@ import com.maks.src.input.Controller;
 
 public class Ship extends GlobalPosition {
 
-	private String shipImage = "/images/ship.png";
+	private String shipImage = "/images/sus.png";
 	private ImageIcon ship = new ImageIcon(getClass().getResource(shipImage));
 
 	int velX = 0;
